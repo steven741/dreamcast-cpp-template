@@ -18,28 +18,28 @@ From the build directory run the following:
 ```bash
 ../binutils*/configure --target=sh-elf && make -j
 ```
-If the build successeds go ahead and install the program with `sudo make install`. If you'd like to verify the install went well run `sh-elf-ld --version` and check the output. Delete all the files in the build directory.
+If the build succeeded go ahead and install the program with `sudo make install`. If you'd like to verify the install went well run `sh-elf-ld --version` and check the output. Delete all the files in the build directory.
 
 ## Building a bootstrap GCC
 Before you attempt to build make sure you have the correct libraries installed. See [GCC Prerequisite](https://gcc.gnu.org/install/prerequisites.html) page for more information. From the build directory run the following:
 ```bash
 ../gcc*/configure --target=sh-elf --enable-languages=c,c++ --with-newlib --disable-libgcc --disable-libstdc++-v3 --disable-libquadmath --disable-libssp --disable-tls && make -j
 ```
-If the build successeds go ahead and install the program with `sudo make install`. If you'd like to verify the install went well run `sh-elf-gcc --version` and check the output. Delete all the files in the build directory.
+If the build succeeded go ahead and install the program with `sudo make install`. If you'd like to verify the install went well run `sh-elf-gcc --version` and check the output. Delete all the files in the build directory.
 
 ## Building Newlib
 From the build directory run the following:
 ```bash
 ../newlib*/configure --target=sh-elf --enable-newlib-nano-malloc
 ```
-If the build successeds go ahead and install the program with `sudo make install`. Delete all the files in the build directory.
+If the build succeeded go ahead and install the program with `sudo make install`. Delete all the files in the build directory.
 
 ## Building GCC
 From the build directory run the following:
 ```bash
 ../gcc*/configure --target=sh-elf --enable-languages=c,c++ --with-newlib && make -j
 ```
-If the build successeds go ahead and install the program with `sudo make install`. You should now have a working toolchain.
+If the build succeeded go ahead and install the program with `sudo make install`. You should now have a working toolchain.
 
 ## Verify working toolchain
 
