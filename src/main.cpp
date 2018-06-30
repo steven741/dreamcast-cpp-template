@@ -4,12 +4,12 @@
 
 #include "registers.h"
 
-#define VRAM_BASE    	                                   0xA5000000
-#define VRAM64_BASE		                                   0xA4000000
-#define VRAM_BANK1_BASE    	                               0x00000000
-#define VRAM_BANK1_END    	                               0x003FFFFC
-#define VRAM_BANK2_BASE		                               0x00400000
-#define VRAM_BANK2_END		                               0x007FFFFC
+#define VRAM_BASE       0xA5000000
+#define VRAM64_BASE     0xA4000000
+#define VRAM_BANK1_BASE 0x00000000
+#define VRAM_BANK1_END  0x003FFFFC
+#define VRAM_BANK2_BASE 0x00400000
+#define VRAM_BANK2_END  0x007FFFFC
 
 #define SIZE_OF_OPB          ((16) * ( 640/32 ) * ( 480/32 ) * 4)
 #define SIZE_OF_BACKGROUND   0x3C
