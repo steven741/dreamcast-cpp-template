@@ -42,7 +42,6 @@ From the build directory run the following:
 If the build succeeded go ahead and install the program with `sudo make install`. You should now have a working toolchain.
 
 ## Verify working toolchain
-
 Run `make` from the root directory of this project. The project should build and start running an emulator. The emulator should display the following:
 
 ![Program Running in Emulator](./doc/img/program.png)
@@ -50,7 +49,6 @@ Run `make` from the root directory of this project. The project should build and
 If you see this you're ready to start programming the Dreamcast. You should be able to burn test.cdi to a CD-R and run the program on real hardware.
 
 # Exploring this project
-
 With a working toolchain you can begin programming the Dreamcast. In this section I'll provide a project walkthru to aid in understanding how one may construct larger projects. In a future blog post I'll go into more detail on the Dreamcast's hardware architecture.
 
 ## The Makefile
@@ -58,15 +56,20 @@ The first thing that should be noted are the top most variables `EMU`, `SCR`, `C
 
 Following that we have flags for building the program. The most important flags are `CFLAGS` and `CXXFLAGS`. The `ml` switch tells the compiler we want little endian code. The `m4-single` switch tells the compiler we want SH-4 code with a bias towards using 32-bit floating point variables if floating point variables are to be used. The switches `ffreestanding` and `nostartfiles` are used because we have no operating system. At the end of `CFLAGS` we have `-Wl,-Ttext=0x8C010000`. The `Wl` switch passes a comma separated list to the linker. In this case we only pass `-Ttext=0x8C010000`. This tells the linker that the text region, which is where the program code is, should be at 0x8C010000.
 
-We have 2 rules in this makefile.
+There are 2 rules in this makefile. At the bottom is one called clean. This removes all the intermediate files when constructing a cdi image.
+
+The first rule, called all, is more interesting. The first line of the rule compiles and links the code. Then objcopy extracts the binary from the elf formatted file. The `.stack` section needs to be removed or the resulting binary would be an entire memory image. From there the binary needs to be "scrambled." This is due to how the Dreamcast loads the binary from disc. Then we make an iso file with an IP.BIN placed in the image's bootsector. A cdi image is generated after this. This format is used for historic reasons. Finally, we clean up the intermediate files and, launch an emulator with the resulting cdi.
+
+To summarize:
+* Compile to ELF with GCC
+* Extract Binary file with Objcopy
+* Scramble the binary file
+* Create an ISO image file
+* Convert to a CDI image file
+* Run emulation with CDI image file
 
 ## The Tooling
 
 
 ## The main.cpp
 
-
-# TODO
-* Make a linker script.
-* Add a makefile rule for uploading image over serial / lan.
-* Add a makefile rule for burning disc image.
