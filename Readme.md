@@ -68,8 +68,5 @@ To summarize:
 * Convert to a CDI image file
 * Run emulation with CDI image file
 
-## The Tooling
-
-
 ## The main.cpp
-
+At the top of int main we can see 3 function calls. `initGraphics()` set's up the hardware for outputting VGA, RGB, or composite. `regionArray()` builds a special data structure in VRAM neccary for making draw calls. `background()` is also a special data structure that's placed in VRAM. Actually, the background is interpreted as 3 vertex points. After this the framebuffer is set. Finally, we can setup the graphics chip, wait for the bus, and send the render command.
