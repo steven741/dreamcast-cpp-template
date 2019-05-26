@@ -53,24 +53,24 @@ init:
     jmp	@r0
     mov	r1,r0
 
-    .align	2
+    .align 2
 mainaddr:
     .long _main
 initaddr:
     .long init
 stackaddr:
-    .long 0x8D000000
+    .long 0x8CF42400
 bss_start_addr:
     .long __bss_start
 bss_end_addr:
     .long _end
 p2_mask:
-    .long 0xa0000000
+    .long 0xA0000000
 setup_cache_addr:
     .long setup_cache
 ccr_addr:
-    .long 0xff00001c
+    .long 0xFF00001C
 ccr_data:
-    .word 0x090b
+    .word 0x090B
 
     .end

@@ -197,11 +197,10 @@ int main()
         TA_LIST_INIT       = 0x80000000;
         TA_LIST_INIT;
 
-
-        // Wait for bus.
+	// wait for vblank-in before rendering
+	// probably should be double buffering memory.
         SB_ISTNRM = 0x08;
         while(!(SB_ISTNRM & 0x08)) {};
-        SB_ISTNRM = 0x08;
 
         STARTRENDER = 0xFFFFFFFF;
     }
