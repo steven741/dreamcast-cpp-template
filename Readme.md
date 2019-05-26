@@ -1,5 +1,5 @@
 # dreamcast-cpp-template
-A getting started template for programming the Dreamcast. This readme is an accompanying guide that goes over building a toolchain and provides a short project walkthru. 
+A getting started template for programming the Dreamcast. This readme is an accompanying guide that goes over building a toolchain and provides a short project walkthrough.
 
 # Getting a toolchain
 You'll need to install the following programs to get started.
@@ -30,7 +30,7 @@ If the build succeeded go ahead and install the program with `sudo make install`
 ## Building Newlib
 From the build directory run the following:
 ```bash
-../newlib*/configure --target=sh-elf --enable-newlib-nano-malloc
+../newlib*/configure --target=sh-elf --enable-newlib-nano-malloc && make -j
 ```
 If the build succeeded go ahead and install the program with `sudo make install`. Delete all the files in the build directory.
 
@@ -49,9 +49,9 @@ Run `make` from the root directory of this project. The project should build and
 If you see this you're ready to start programming the Dreamcast. You should be able to burn test.cdi to a CD-R and run the program on real hardware.
 
 # Exploring this project
-With a working toolchain you can begin programming the Dreamcast. In this section I'll provide a project walkthru to aid in understanding how one may construct larger projects. In a future blog post I'll go into more detail on the Dreamcast's hardware architecture.
+With a working toolchain you can begin programming the Dreamcast. In this section I'll provide a project walkthrough to aid in understanding how one may construct larger projects. In a future blog post I'll go into more detail on the Dreamcast's hardware architecture.
 
-## The Makefile
+## Makefile
 The first thing that should be noted are the top most variables `EMU`, `SCR`, `CDI`, `ISO`, `CC`, `CXX`, `AS`, `LD`, `AR`, `OBJ` and, `NM`. These are the tools that I use for making Dreamcast programs. I'll go over these in more detail in the tooling section of this document but, for now know that these are tools that can be used for building programs.
 
 Following that we have flags for building the program. The most important flags are `CFLAGS` and `CXXFLAGS`. The `ml` switch tells the compiler we want little endian code. The `m4-single` switch tells the compiler we want SH-4 code with a bias towards using 32-bit floating point variables if floating point variables are to be used. The switches `ffreestanding` and `nostartfiles` are used because we have no operating system. At the end of `CFLAGS` we have `-Wl,-Ttext=0x8C010000`. The `Wl` switch passes a comma separated list to the linker. In this case we only pass `-Ttext=0x8C010000`. This tells the linker that the text region, which is where the program code is, should be at 0x8C010000.
@@ -68,5 +68,8 @@ To summarize:
 * Convert to a CDI image file
 * Run emulation with CDI image file
 
-## The main.cpp
-At the top of int main we can see 3 function calls. `initGraphics()` set's up the hardware for outputting VGA, RGB, or composite. `regionArray()` builds a special data structure in VRAM neccary for making draw calls. `background()` is also a special data structure that's placed in VRAM. Actually, the background is interpreted as 3 vertex points. After this the framebuffer is set. Finally, we can setup the graphics chip, wait for the bus, and send the render command.
+## main.cpp
+At the top of int main we can see 3 function calls. `initGraphics()` set's up the hardware for outputting VGA, RGB, or composite. `regionArray()` builds a special data structure in VRAM necessary for making draw calls. `background()` is also a special data structure that's placed in VRAM. Actually, the background is interpreted as 3 vertex points. After this the framebuffer is set. Finally, we can setup the graphics chip, wait for the bus, and send the render command.
+
+## Tooling
+todo

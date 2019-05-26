@@ -48,6 +48,7 @@ init:
     mov	#0, r2
     mov	#0, r1
     lds	r1,fpscr
+    mov.l stackaddr,r15
     mov.l mainaddr,r0
     jmp	@r0
     mov	r1,r0
@@ -57,6 +58,8 @@ mainaddr:
     .long _main
 initaddr:
     .long init
+stackaddr:
+    .long 0x8CFFFFFF
 bss_start_addr:
     .long __bss_start
 bss_end_addr:
