@@ -59,7 +59,7 @@ mainaddr:
 initaddr:
     .long init
 stackaddr:
-    .long 0x8CF42400
+    .long 0x8D000000
 bss_start_addr:
     .long __bss_start
 bss_end_addr:
