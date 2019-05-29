@@ -179,7 +179,7 @@
     Core Registers
 */
 #define HOLLY_ID    	        *( const volatile uint32_t* )0xA05F8000
-#define HOLLY_REVISION		    *( const volatile uint32_t* )0xA05F8004
+#define HOLLY_REVISION	        *( const volatile uint32_t* )0xA05F8004
 #define SOFTRESET                     *( volatile uint32_t* )0xA05F8008
 #define STARTRENDER                   *( volatile uint32_t* )0xA05F8014
 #define TEST_SELECT                   *( volatile uint32_t* )0xA05F8018

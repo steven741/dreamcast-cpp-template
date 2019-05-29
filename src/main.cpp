@@ -32,8 +32,8 @@ void initGraphics()
     constexpr auto WIDTH  = 640;
     constexpr auto HEIGHT = 480;
 
-    volatile uint32_t *porta = (uint32_t*)0xff80002c;
-    *porta = (*(uint32_t*)0xff80002c & ~0xf0000) | 0xa0000;
+    volatile uint16_t *porta = (uint16_t*)0xff80002c;
+    PCTRA = (PCTRA & ~0xf0000) | 0xa0000;
 
     switch( ((*(volatile uint16_t*)(porta+1))>>8)&3 )
     {
